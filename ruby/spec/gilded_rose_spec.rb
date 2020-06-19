@@ -36,6 +36,10 @@ describe GildedRose do
     it 'should be able to denote item in quality by +1' do
       expect(@gilded_rose.update_quality().first.quality).to eq 2
     end
+
+    it 'should be able to denote item in value by -1' do
+      expect(@gilded_rose.update_quality().first.sell_in).to eq 2
+    end
   end
 
 end
