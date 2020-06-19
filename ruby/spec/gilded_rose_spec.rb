@@ -31,6 +31,12 @@ describe GildedRose do
       expect(@gilded_rose_backstage.update_quality().first.quality).to eq 14
     end
 
+    it 'should be able to denote backstage item in quality by +3 if sell_in <= 5' do
+      7.times { @gilded_rose_backstage.update_quality() }
+      
+      expect(@gilded_rose_backstage.update_quality().first.quality).to eq 25
+    end
+
   end
 
   context 'When selling item is not Aged Brie or Sulfuras' do
