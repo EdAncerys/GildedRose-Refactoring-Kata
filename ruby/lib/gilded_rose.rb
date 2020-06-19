@@ -42,7 +42,8 @@ class GildedRose
   end
 
   def backstage(item)
-    item.quality += 1
+    item.quality += 1 if item.sell_in > 10
+    item.quality += 2 if item.sell_in <= 10
   end
 
   def quality_label(item, value)
