@@ -37,6 +37,12 @@ describe GildedRose do
       expect(@gilded_rose_backstage.update_quality().first.quality).to eq 25
     end
 
+    it 'should be able to drop backstage item in quality to 0 if sell_in < 0' do
+      13.times { @gilded_rose_backstage.update_quality() }
+      
+      expect(@gilded_rose_backstage.update_quality().first.quality).to eq 0
+    end
+
   end
 
   context 'When selling item is not Aged Brie or Sulfuras' do

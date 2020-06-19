@@ -45,6 +45,7 @@ class GildedRose
     item.quality += 1 if item.sell_in > 10
     item.quality += 2 if item.sell_in <= 10 && item.sell_in > 5
     item.quality += 3 if item.sell_in <= 5 && item.sell_in >= 0
+    item.quality = 0 if item.sell_in < 0
   end
 
   def quality_label(item, value)
