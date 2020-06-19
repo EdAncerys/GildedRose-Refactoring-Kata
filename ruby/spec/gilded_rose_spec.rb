@@ -31,10 +31,8 @@ describe GildedRose do
 
     before :each do
       item_degradable = [Item.new('Elixir', 3, 8)]
-      item_degradable_sell_by_pass = [Item.new('Elixir Sell By Pass', 0, 8)]
       @gilded_rose = GildedRose.new(item_degradable)
-      @gilded_rose_sell_by_pass = GildedRose.new(item_degradable_sell_by_pass)
-    end
+     end
 
     it 'should be able to denote item in quality by -1' do
       expect(@gilded_rose.update_quality().first.quality).to eq 7
@@ -46,13 +44,16 @@ describe GildedRose do
 
     it 'the quality of an item should be never negative' do
       10.times { @gilded_rose.update_quality() }
+
       expect(@gilded_rose.update_quality().first.quality).to eq 0
     end
 
     context 'Once the sell by date has passed' do
 
       it 'should be able to denote item in quality by -2' do
-        expect(@gilded_rose_sell_by_pass.update_quality().first.quality).to eq 6
+        4.times { @gilded_rose.update_quality() }
+
+        expect(@gilded_rose.update_quality().first.quality).to eq 2
       end
     end
 

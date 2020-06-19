@@ -1,7 +1,7 @@
 require 'item'
 
 class GildedRose
-
+  attr_reader :items
   def initialize(items)
     @items = items
   end
@@ -16,30 +16,9 @@ class GildedRose
       reduce_quality(item) if validates_if_regular?(item)
       aged_brie(item) if item.name == AGED_BRIE
  
-
       reduce_sell_in(item) if item.name != SULFARAS
-    
-
-      if item.sell_in < 0
-        if item.name != AGED_BRIE
-          if item.name != BACKSTAGE_PASSES
-            if item.quality > 0
-              if item.name != SULFARAS
-                item.quality -= 1
-              end
-            end
-          else
-            item.quality = item.quality - item.quality
-          end
-        else
-          if item.quality < 50
-            item.quality += 1
-          end
-        end
-      end
       
     end
-
   end
 
   private
