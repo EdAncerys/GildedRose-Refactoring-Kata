@@ -10,6 +10,14 @@ describe GildedRose do
     end
   end
 
+  context 'when selling item is Conjured' do 
+
+  end
+
+  context 'when selling item is Backstage passes' do 
+
+  end
+
   context 'When selling item is not Aged Brie or Sulfuras' do
 
     before :each do
@@ -65,12 +73,12 @@ describe GildedRose do
   context 'When selling item is Sulfuras' do
 
     before :each do
-      sulfaras = [Item.new('Sulfuras, Hand of Ragnaros', 10, 10)]
+      sulfaras = [Item.new('Sulfuras, Hand of Ragnaros', 100, 80)]
       @gilded_rose_sulfaras = GildedRose.new(sulfaras)
     end
 
     it 'should not dentoe in quality' do
-      expect(@gilded_rose_sulfaras.update_quality().first.quality).to eq 10
+      expect(@gilded_rose_sulfaras.update_quality().first.quality).to eq 80
     end
   end
 
