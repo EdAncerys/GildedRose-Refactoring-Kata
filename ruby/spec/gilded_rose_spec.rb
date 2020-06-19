@@ -15,7 +15,6 @@ describe GildedRose do
     before :each do
       item_degradable = [Item.new('Elixir', 3, 8)]
       @gilded_rose = GildedRose.new(item_degradable)
-      
     end
 
     it 'should be able to denote item in quality by -1' do
@@ -24,6 +23,18 @@ describe GildedRose do
 
     it 'should be able to denote item in value by -1' do
       expect(@gilded_rose.update_quality().first.sell_in).to eq 2
+    end
+  end
+
+  context 'When selling item is Aged Brie' do
+
+    before :each do
+      item_degradable = [Item.new('Aged Brie', 3, 1)]
+      @gilded_rose = GildedRose.new(item_degradable)
+    end
+
+    it 'should be able to denote item in quality by +1' do
+      expect(@gilded_rose.update_quality().first.quality).to eq 2
     end
   end
 
