@@ -62,4 +62,16 @@ describe GildedRose do
     end
   end
 
+  context 'When selling item is Sulfuras' do
+
+    before :each do
+      sulfaras = [Item.new('Sulfuras, Hand of Ragnaros', 10, 10)]
+      @gilded_rose_sulfaras = GildedRose.new(sulfaras)
+    end
+
+    it 'should not dentoe in quality' do
+      expect(@gilded_rose_sulfaras.update_quality().first.quality).to eq 10
+    end
+  end
+
 end
