@@ -15,6 +15,7 @@ class GildedRose
 
       reduce_quality(item) if validates_if_regular?(item)
       aged_brie(item) if item.name == AGED_BRIE
+      backstage(item) if item.name == BACKSTAGE_PASSES
  
       reduce_sell_in(item) if item.name != SULFARAS
       
@@ -38,6 +39,10 @@ class GildedRose
 
   def aged_brie(item) 
     item.quality < 50 ? item.quality += 1 : item.quality = 50
+  end
+
+  def backstage(item)
+    item.quality += 1
   end
 
   def quality_label(item, value)

@@ -16,14 +16,14 @@ describe GildedRose do
 
   context 'when selling item is Backstage passes' do 
 
-    # before :each do
-    #   item_aged_brie = [Item.new('Aged Brie', 30, 40)]
-    #   @gilded_rose_aged_brie = GildedRose.new(item_aged_brie)
-    # end
+    before :each do
+      item_backstage = [Item.new('Backstage passes to a TAFKAL80ETC concert', 12, 10)]
+      @gilded_rose_backstage = GildedRose.new(item_backstage)
+    end
 
-    # it 'should be able to denote item in quality by +1' do
-    #   expect(@gilded_rose_aged_brie.update_quality().first.quality).to eq 41
-    # end
+    it 'should be able to denote backstage item in quality by +1' do
+      expect(@gilded_rose_backstage.update_quality().first.quality).to eq 11
+    end
 
   end
 
