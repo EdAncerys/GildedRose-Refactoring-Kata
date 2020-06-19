@@ -9,16 +9,16 @@ class GildedRose
   AGED_BRIE = 'Aged Brie'
   SULFARAS = 'Sulfuras, Hand of Ragnaros'
   BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert'
+  CONJURED = 'Conjured'
 
   def update_quality()
     @items.each do |item|
+    reduce_quality_regular_item(item) if validates_if_regular?(item)
+    aged_brie(item) if item.name == AGED_BRIE
+    backstage(item) if item.name == BACKSTAGE_PASSES
+    reduce_quality_conjured_item(item) if item.name == CONJURED
 
-      reduce_quality(item) if validates_if_regular?(item)
-      aged_brie(item) if item.name == AGED_BRIE
-      backstage(item) if item.name == BACKSTAGE_PASSES
- 
-      reduce_sell_in(item) if item.name != SULFARAS
-      
+    reduce_sell_in(item) if item.name != SULFARAS
     end
   end
 
@@ -28,13 +28,17 @@ class GildedRose
     item.sell_in -= 1
   end
 
-  def reduce_quality(item)
-    quality_label(item, 1) if item.sell_in >= 0
-    quality_label(item, 2) if item.sell_in < 0
+  def reduce_quality_regular_item(item)
+    manage_item_quality(item, 1) if item.sell_in >= 0
+    manage_item_quality(item, 2) if item.sell_in < 0
+  end
+
+  def reduce_quality_conjured_item(item)
+    manage_item_quality(item, 2)
   end
 
   def validates_if_regular?(item)
-    item.name != AGED_BRIE && item.name != SULFARAS && item.name != BACKSTAGE_PASSES
+    item.name != AGED_BRIE && item.name != SULFARAS && item.name != BACKSTAGE_PASSES && item.name != CONJURED
   end
 
   def aged_brie(item) 
@@ -48,7 +52,7 @@ class GildedRose
     item.quality = 0 if item.sell_in < 0
   end
 
-  def quality_label(item, value)
+  def manage_item_quality(item, value)
     item.quality -= value if item.quality > 0
     item.quality = 0 if item.quality <= 0
   end

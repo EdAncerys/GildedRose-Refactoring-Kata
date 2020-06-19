@@ -11,7 +11,14 @@ describe GildedRose do
   end
 
   context 'when selling item is Conjured' do 
+    before :each do
+      item_conjured = [Item.new('Conjured', 7, 7)]
+      @gilded_rose_conjured = GildedRose.new(item_conjured)
+    end
 
+    it 'should be able to denote Conjured item in quality by -2' do
+      expect(@gilded_rose_conjured.update_quality().first.quality).to eq 5
+    end
   end
 
   context 'when selling item is Backstage passes' do 
