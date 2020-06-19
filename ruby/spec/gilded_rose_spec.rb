@@ -16,6 +16,15 @@ describe GildedRose do
 
   context 'when selling item is Backstage passes' do 
 
+    # before :each do
+    #   item_aged_brie = [Item.new('Aged Brie', 30, 40)]
+    #   @gilded_rose_aged_brie = GildedRose.new(item_aged_brie)
+    # end
+
+    # it 'should be able to denote item in quality by +1' do
+    #   expect(@gilded_rose_aged_brie.update_quality().first.quality).to eq 41
+    # end
+
   end
 
   context 'When selling item is not Aged Brie or Sulfuras' do
