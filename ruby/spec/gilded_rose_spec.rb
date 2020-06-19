@@ -27,6 +27,11 @@ describe GildedRose do
       expect(@gilded_rose.update_quality().first.sell_in).to eq 2
     end
 
+    it 'the quality of an item should be never negative' do
+      10.times { @gilded_rose.update_quality() }
+      expect(@gilded_rose.update_quality().first.quality).to eq 0
+    end
+
     context 'Once the sell by date has passed' do
 
       it 'should be able to denote item in quality by -2' do
